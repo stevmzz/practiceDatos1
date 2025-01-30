@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 using practice;
+using practice.recursive;
 
 class Program
 {
     static void Main(string[] args)
     {
         Conditionals conditionals = new Conditionals();
+        BasicStackRecursive recursive = new BasicStackRecursive();
         bool running = true;
 
         while (running)
@@ -24,9 +27,7 @@ class Program
                     break;
 
                 case "2":
-                    Console.WriteLine("Módulo de Iteración en desarrollo...");
-                    Console.WriteLine("Presione cualquier tecla para continuar...");
-                    Console.ReadKey();
+                    ManejarMenuRecursividadAux(recursive);
                     break;
 
                 default:
@@ -46,7 +47,7 @@ class Program
         Console.WriteLine("═══════════════════════════");
         Console.WriteLine("0. Salir");
         Console.WriteLine("1. Condicionales");
-        Console.WriteLine("2. Iteración");
+        Console.WriteLine("2. Recursividad");
         Console.WriteLine("───────────────────────────");
         Console.Write("Ingrese una opción: ");
     }
@@ -70,6 +71,210 @@ class Program
         Console.WriteLine("11. Números Romanos");
         Console.WriteLine("───────────────────────────────────");
         Console.Write("Ingrese una opción: ");
+    }
+
+    static void MostrarMenuRecursividadAux()
+    {
+        Console.Clear();
+        Console.WriteLine("═══════════════════════════════════");
+        Console.WriteLine("      EJERCICIOS RECURSIVIDAD     ");
+        Console.WriteLine("═══════════════════════════════════");
+        Console.WriteLine(" 1. Recursividad de pila");
+        Console.WriteLine(" 2. Recursividad de cola");
+        Console.WriteLine("───────────────────────────────────");
+        Console.Write("Ingrese una opción: ");
+    }
+
+    static void MostrarMenuCategoriasRecursividadPila()
+    {
+        Console.Clear();
+        Console.WriteLine("═══════════════════════════════════");
+        Console.WriteLine("  CATEGORÍAS RECURSIVIDAD DE PILA  ");
+        Console.WriteLine("═══════════════════════════════════");
+        Console.WriteLine(" 1. Ejercicios Básicos");
+        Console.WriteLine(" 2. Ejercicios con Números");
+        Console.WriteLine(" 3. Ejercicios con Listas");
+        Console.WriteLine(" 4. Ejercicios Avanzados");
+        Console.WriteLine("───────────────────────────────────");
+        Console.Write("Ingrese una opción: ");
+    }
+
+    static void MostrarMenuRecursividadPilaBasica()
+    {
+        Console.Clear();
+        Console.WriteLine("═══════════════════════════════════");
+        Console.WriteLine("  EJERCICIOS BÁSICOS DE RECURSIVIDAD  ");
+        Console.WriteLine("═══════════════════════════════════");
+        Console.WriteLine(" 1. Concatenar 'unos'");
+        Console.WriteLine(" 2. Concatenar dígitos");
+        Console.WriteLine(" 3. Multiplicación por sumas");
+        Console.WriteLine(" 4. Suma mayor a diez");
+        Console.WriteLine(" 5. Suma pares e impares");
+        Console.WriteLine(" 6. Clasificador");
+        Console.WriteLine(" 7. Todos dentro del segundo");
+        Console.WriteLine("───────────────────────────────────");
+        Console.Write("Ingrese una opción: ");
+    }
+
+    static void MostrarMenuRecursividadPilaNumeros()
+    {
+        Console.Clear();
+        Console.WriteLine("═══════════════════════════════════");
+        Console.WriteLine("  EJERCICIOS NUMÉRICOS RECURSIVOS  ");
+        Console.WriteLine("═══════════════════════════════════");
+        Console.WriteLine(" [Ejercicios pendientes de implementar]");
+        Console.WriteLine("───────────────────────────────────");
+        Console.Write("Presione cualquier tecla para volver...");
+    }
+
+    static void MostrarMenuRecursividadPilaListas()
+    {
+        Console.Clear();
+        Console.WriteLine("═══════════════════════════════════");
+        Console.WriteLine("  EJERCICIOS RECURSIVOS CON LISTAS ");
+        Console.WriteLine("═══════════════════════════════════");
+        Console.WriteLine(" [Ejercicios pendientes de implementar]");
+        Console.WriteLine("───────────────────────────────────");
+        Console.Write("Presione cualquier tecla para volver...");
+    }
+
+    static void MostrarMenuRecursividadPilaAvanzados()
+    {
+        Console.Clear();
+        Console.WriteLine("═══════════════════════════════════");
+        Console.WriteLine("  EJERCICIOS RECURSIVOS AVANZADOS  ");
+        Console.WriteLine("═══════════════════════════════════");
+        Console.WriteLine(" [Ejercicios pendientes de implementar]");
+        Console.WriteLine("───────────────────────────────────");
+        Console.Write("Presione cualquier tecla para volver...");
+    }
+
+    static void MostrarMenuRecursividadCola()
+    {
+        Console.Clear();
+        Console.WriteLine("═══════════════════════════════════");
+        Console.WriteLine("  EJERCICIOS RECURSIVIDAD DE COLA     ");
+        Console.WriteLine("═══════════════════════════════════");
+        Console.WriteLine(" 1. Ejercicio 1");
+        Console.WriteLine(" 2. Ejercicio 2");
+        Console.WriteLine("───────────────────────────────────");
+        Console.Write("Ingrese una opción: ");
+    }
+
+    static void ManejarMenuRecursividadAux(BasicStackRecursive basicStackRecursive)
+    {
+        MostrarMenuRecursividadAux();
+        string opcion = Console.ReadLine();
+        Console.Clear();
+
+        switch (opcion)
+        {
+            case "1":
+                MostrarMenuCategoriasRecursividadPila();
+                string opcionCategoria = Console.ReadLine();
+                Console.Clear();
+
+                switch (opcionCategoria)
+                {
+                    case "1": // Ejercicios Básicos
+                        MostrarMenuRecursividadPilaBasica();
+                        string opcionPila = Console.ReadLine();
+                        Console.Clear();
+                        switch (opcionPila)
+                        {
+                            case "1":
+                                Console.Write("Ingrese el número: ");
+                                string num = Console.ReadLine()?.ToUpper();
+                                Console.Clear();
+                                Console.WriteLine($"Resultado de solo 'unos': {basicStackRecursive.ExtractOnes(long.Parse(num))}");
+                                break;
+
+                            case "2":
+                                Console.Write("Ingrese un número: ");
+                                string num1 = Console.ReadLine();
+                                Console.Write("Ingrese un segundo número: ");
+                                string num2 = Console.ReadLine();
+                                Console.Clear();
+                                Console.WriteLine($"Resultado de los dos números concatenados: {basicStackRecursive.AppendDigits(long.Parse(num1), long.Parse(num2))}");
+                                break;
+
+                            case "3":
+                                Console.Write("Ingrese un número: ");
+                                string numb1 = Console.ReadLine();
+                                Console.Write("Ingrese un segundo número: ");
+                                string numb2 = Console.ReadLine();
+                                Console.Clear();
+                                Console.WriteLine($"Resultado de multiplicación por sumas sucecivas: {basicStackRecursive.RecursiveMultiply(long.Parse(numb1), long.Parse(numb2))}");
+                                break;
+
+                            case "4":
+                                Console.Write("Ingrese el número: ");
+                                string numb = Console.ReadLine()?.ToUpper();
+                                Console.Clear();
+                                Console.WriteLine($"Resultado de si la suma de los dígitos es >= 10: {basicStackRecursive.IsSumGreaterOrEqualTen(long.Parse(numb))}");
+                                break;
+
+                            case "5":
+                                Console.Write("Ingrese el número: ");
+                                string numbe = Console.ReadLine()?.ToUpper();
+                                Console.Clear();
+                                Console.WriteLine($"Resultado de (suma pares, suma impares): {basicStackRecursive.SumEvenOddDigits(long.Parse(numbe))}");
+                                break;
+
+                            case "6":
+                                Console.Write("Ingrese el número: ");
+                                string number = Console.ReadLine()?.ToUpper();
+                                Console.Clear();
+                                Console.WriteLine($"Resultado: {basicStackRecursive.ClassifyNumber(long.Parse(number))}");
+                                break;
+
+                            case "7":
+                                Console.Write("Ingrese un número: ");
+                                string number1 = Console.ReadLine();
+                                Console.Write("Ingrese un segundo número: ");
+                                string number2 = Console.ReadLine();
+                                Console.Clear();
+                                Console.WriteLine($"¿Todos los digitos de {number1} están en {number2}?: {basicStackRecursive.AreDigitsContained(long.Parse(number1), long.Parse(number2))}");
+                                break;
+
+                            default:
+                                Console.WriteLine("Opción no válida");
+                                break;
+                        }
+                        break;
+
+                    case "2": // Ejercicios con Números
+                        MostrarMenuRecursividadPilaNumeros();
+                        Console.ReadKey();
+                        break;
+
+                    case "3": // Ejercicios con Listas
+                        MostrarMenuRecursividadPilaListas();
+                        Console.ReadKey();
+                        break;
+
+                    case "4": // Ejercicios Avanzados
+                        MostrarMenuRecursividadPilaAvanzados();
+                        Console.ReadKey();
+                        break;
+
+                    default:
+                        Console.WriteLine("Opción no válida");
+                        break;
+                }
+                break;
+
+            case "2": // Recursividad de cola
+                MostrarMenuRecursividadCola();
+                break;
+
+            default:
+                Console.WriteLine("Opción no válida");
+                break;
+        }
+
+        Console.WriteLine("\nPresione cualquier tecla para continuar...");
+        Console.ReadKey();
     }
 
     static void ManejarMenuCondicionales(Conditionals conditionals)
