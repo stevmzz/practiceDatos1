@@ -9,6 +9,7 @@ class Program
     {
         Conditionals conditionals = new Conditionals();
         BasicStackRecursive recursive = new BasicStackRecursive();
+        NumbersStackRecursive numbers = new NumbersStackRecursive();
         bool running = true;
 
         while (running)
@@ -27,7 +28,7 @@ class Program
                     break;
 
                 case "2":
-                    ManejarMenuRecursividadAux(recursive);
+                    ManejarMenuRecursividadAux(recursive, numbers);
                     break;
 
                 default:
@@ -122,9 +123,16 @@ class Program
         Console.WriteLine("═══════════════════════════════════");
         Console.WriteLine("  EJERCICIOS NUMÉRICOS RECURSIVOS  ");
         Console.WriteLine("═══════════════════════════════════");
-        Console.WriteLine(" [Ejercicios pendientes de implementar]");
+        Console.WriteLine(" 1. Suma de dígitos impares");
+        Console.WriteLine(" 2. Contar dígitos pares");
+        Console.WriteLine(" 3. Primer y último dígito iguales");
+        Console.WriteLine(" 4. Suma de dígitos mayor a diez");
+        Console.WriteLine(" 5. Contar ocurrencias de un dígito");
+        Console.WriteLine(" 6. Análisis de dígitos (bajos/altos)");
+        Console.WriteLine(" 7. Verificar si todos son pares");
+        Console.WriteLine(" 8. Verificar si hay al menos un par");
         Console.WriteLine("───────────────────────────────────");
-        Console.Write("Presione cualquier tecla para volver...");
+        Console.Write("Ingrese una opción: ");
     }
 
     static void MostrarMenuRecursividadPilaListas()
@@ -161,7 +169,7 @@ class Program
         Console.Write("Ingrese una opción: ");
     }
 
-    static void ManejarMenuRecursividadAux(BasicStackRecursive basicStackRecursive)
+    static void ManejarMenuRecursividadAux(BasicStackRecursive basicStackRecursive, NumbersStackRecursive numbersStackRecursive)
     {
         MostrarMenuRecursividadAux();
         string opcion = Console.ReadLine();
@@ -245,7 +253,75 @@ class Program
 
                     case "2": // Ejercicios con Números
                         MostrarMenuRecursividadPilaNumeros();
-                        Console.ReadKey();
+                        string opcionPilaNum = Console.ReadLine();
+                        Console.Clear();
+                        switch (opcionPilaNum)
+                        {
+                            case "1":
+                                Console.Write("Ingrese un número: ");
+                                string number = Console.ReadLine()?.ToUpper();
+                                Console.Clear();
+                                Console.WriteLine($"La suma de los dígitos impares es: {numbersStackRecursive.SumOddDigits(long.Parse(number))}");
+                                break;
+
+                            case "2":
+                                Console.Write("Ingrese un número: ");
+                                string number1 = Console.ReadLine()?.ToUpper();
+                                Console.Clear();
+                                Console.WriteLine($"El número contiene {numbersStackRecursive.CountEvenDigits(long.Parse(number1))} dígitos pares");
+                                break;
+
+                            case "3":
+                                Console.Write("Ingrese un número: ");
+                                string numbe1 = Console.ReadLine()?.ToUpper();
+                                Console.Clear();
+                                Console.WriteLine($"¿El primer y último dígito son iguales?: {numbersStackRecursive.IsFirstLastEqual(long.Parse(numbe1))}");
+                                break;
+
+                            case "4":
+                                Console.Write("Ingrese un número: ");
+                                string numb1 = Console.ReadLine()?.ToUpper();
+                                Console.Clear();
+                                Console.WriteLine($"¿La suma de los dígitos es mayor o igual a 10?: {numbersStackRecursive.IsSumAtLeastTen(long.Parse(numb1))}");
+                                break;
+
+                            case "5":
+                                Console.Write("Ingrese un número: ");
+                                string n1 = Console.ReadLine();
+                                Console.Write("Ingrese el dígito a buscar (0-9): ");
+                                string n2 = Console.ReadLine();
+                                Console.Clear();
+                                Console.WriteLine($"El dígito {n2} aparece {numbersStackRecursive.CountDigitOccurrences(long.Parse(n1), int.Parse(n2))} veces en el número");
+                                break;
+
+                            case "6":
+                                Console.Write("Ingrese un número: ");
+                                string nu1 = Console.ReadLine()?.ToUpper();
+                                Console.Clear();
+                                var (bajos, altos) = numbersStackRecursive.AnalyzeDigits(long.Parse(nu1));
+                                Console.WriteLine($"Análisis de dígitos:");
+                                Console.WriteLine($"- Dígitos bajos (0-4): {bajos}");
+                                Console.WriteLine($"- Dígitos altos (5-9): {altos}");
+                                break;
+
+                            case "7":
+                                Console.Write("Ingrese un número: ");
+                                string num = Console.ReadLine()?.ToUpper();
+                                Console.Clear();
+                                Console.WriteLine($"¿Todos los dígitos son pares?: {numbersStackRecursive.AreAllDigitsEven(long.Parse(num))}");
+                                break;
+
+                            case "8":
+                                Console.Write("Ingrese un número: ");
+                                string numberOne = Console.ReadLine()?.ToUpper();
+                                Console.Clear();
+                                Console.WriteLine($"¿Hay al menos un dígito par?: {numbersStackRecursive.HasAtLeastOneEven(long.Parse(numberOne))}");
+                                break;
+
+                            default:
+                                Console.WriteLine("Opción no válida");
+                                break;
+                        }
                         break;
 
                     case "3": // Ejercicios con Listas
