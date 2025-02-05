@@ -95,7 +95,8 @@ class Program
         Console.WriteLine(" 1. Ejercicios Básicos");
         Console.WriteLine(" 2. Ejercicios con Números");
         Console.WriteLine(" 3. Ejercicios con Listas");
-        Console.WriteLine(" 4. Ejercicios Avanzados");
+        Console.WriteLine(" 4. Ejercicios con Arrays");
+        Console.WriteLine(" 5. Ejercicios Avanzados");
         Console.WriteLine("───────────────────────────────────");
         Console.Write("Ingrese una opción: ");
     }
@@ -140,6 +141,17 @@ class Program
         Console.Clear();
         Console.WriteLine("═══════════════════════════════════");
         Console.WriteLine("  EJERCICIOS RECURSIVOS CON LISTAS ");
+        Console.WriteLine("═══════════════════════════════════");
+        Console.WriteLine(" [Ejercicios pendientes de implementar]");
+        Console.WriteLine("───────────────────────────────────");
+        Console.Write("Presione cualquier tecla para volver...");
+    }
+
+    static void MostrarMenuRecursividadPilaArrays()
+    {
+        Console.Clear();
+        Console.WriteLine("═══════════════════════════════════");
+        Console.WriteLine("  EJERCICIOS RECURSIVOS CON ARRAYS ");
         Console.WriteLine("═══════════════════════════════════");
         Console.WriteLine(" [Ejercicios pendientes de implementar]");
         Console.WriteLine("───────────────────────────────────");
@@ -329,7 +341,12 @@ class Program
                         Console.ReadKey();
                         break;
 
-                    case "4": // Ejercicios Avanzados
+                    case "4": // Ejercicios con Arrays
+                        MostrarMenuRecursividadPilaArrays();
+                        Console.ReadKey();
+                        break;
+
+                    case "5": // Ejercicios Avanzados
                         MostrarMenuRecursividadPilaAvanzados();
                         Console.ReadKey();
                         break;
