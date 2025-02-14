@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
-using practice;
+using practice.conditionals;
 using practice.recursive;
 
 class Program
@@ -10,6 +10,7 @@ class Program
         Conditionals conditionals = new Conditionals();
         BasicStackRecursive recursive = new BasicStackRecursive();
         NumbersStackRecursive numbers = new NumbersStackRecursive();
+        ListsStackRecursive lists = new ListsStackRecursive();
         bool running = true;
 
         while (running)
@@ -28,7 +29,7 @@ class Program
                     break;
 
                 case "2":
-                    ManejarMenuRecursividadAux(recursive, numbers);
+                    ManejarMenuRecursividadAux(recursive, numbers, lists);
                     break;
 
                 default:
@@ -142,9 +143,10 @@ class Program
         Console.WriteLine("═══════════════════════════════════");
         Console.WriteLine("  EJERCICIOS RECURSIVOS CON LISTAS ");
         Console.WriteLine("═══════════════════════════════════");
-        Console.WriteLine(" [Ejercicios pendientes de implementar]");
+        Console.WriteLine(" 1. Ejercicio");
+        Console.WriteLine(" 2. Ejercicio");
         Console.WriteLine("───────────────────────────────────");
-        Console.Write("Presione cualquier tecla para volver...");
+        Console.Write("Ingrese una opción: ");
     }
 
     static void MostrarMenuRecursividadPilaArrays()
@@ -181,7 +183,7 @@ class Program
         Console.Write("Ingrese una opción: ");
     }
 
-    static void ManejarMenuRecursividadAux(BasicStackRecursive basicStackRecursive, NumbersStackRecursive numbersStackRecursive)
+    static void ManejarMenuRecursividadAux(BasicStackRecursive basicStackRecursive, NumbersStackRecursive numbersStackRecursive, ListsStackRecursive listsStackRecursive)
     {
         MostrarMenuRecursividadAux();
         string opcion = Console.ReadLine();
@@ -338,8 +340,37 @@ class Program
 
                     case "3": // Ejercicios con Listas
                         MostrarMenuRecursividadPilaListas();
-                        Console.ReadKey();
+                        string opcionPilaList = Console.ReadLine();
+                        Console.Clear();
+                        switch (opcionPilaList)
+                        {
+                            case "1":
+                                Console.Write("Ingrese el umbral (0-9): ");
+                                int threshold = int.Parse(Console.ReadLine());
+                                Console.Write("Ingrese números separados por coma: ");
+                                string list = Console.ReadLine();
+                                List<int> numbers = list.Split(',').Select(int.Parse).ToList();
+                                var listSplit = new ListsStackRecursive();
+                                var (greater, less) = listSplit.SplitListByThreshold(threshold, numbers);
+                                Console.Clear();
+                                Console.WriteLine($"Resultado: ([{string.Join(", ", greater)}], [{string.Join(", ", less)}])");
+                                break;
+
+                            case "2":
+                                Console.Write("Ingrese las 10 calificaciones separadas por coma: ");
+                                string input = Console.ReadLine();
+                                List<int> scores = input.Split(',').Select(int.Parse).ToList();
+                                var calculator = new ListsStackRecursive();
+                                var result = calculator.CalculateScore(scores);
+                                Console.Clear();
+                                Console.WriteLine($"Resultado: {result}");
+                                break;
+
+                            default:
+                                break;
+                        }
                         break;
+
 
                     case "4": // Ejercicios con Arrays
                         MostrarMenuRecursividadPilaArrays();
