@@ -145,6 +145,9 @@ class Program
         Console.WriteLine("═══════════════════════════════════");
         Console.WriteLine(" 1. Ejercicio");
         Console.WriteLine(" 2. Ejercicio");
+        Console.WriteLine(" 3. Ejercicio");
+        Console.WriteLine(" 4. Ejercicio");
+        Console.WriteLine(" 5. Ejercicio");
         Console.WriteLine("───────────────────────────────────");
         Console.Write("Ingrese una opción: ");
     }
@@ -364,6 +367,38 @@ class Program
                                 var result = calculator.CalculateScore(scores);
                                 Console.Clear();
                                 Console.WriteLine($"Resultado: {result}");
+                                break;
+
+                            case "3":
+                                Console.Write("Ingrese la lista de enteros separados por coma: ");
+                                string input1 = Console.ReadLine();
+                                List<int> list1 = input1.Split(',').Select(int.Parse).ToList();
+                                var separador = new ListsStackRecursive();
+                                var (pares, impares) = separador.SplitByParity(list1);
+                                Console.Clear();
+                                Console.WriteLine($"Pares: [{string.Join(", ", pares)}]");
+                                Console.WriteLine($"Impares: [{string.Join(", ", impares)}]");
+                                break;
+
+                            case "4":
+                                Console.Write("Ingrese la lista de enteros separados por coma: ");
+                                string input11 = Console.ReadLine();
+                                List<int> list11 = input11.Split(',').Select(int.Parse).ToList();
+                                var contador = new ListsStackRecursive();
+                                int duplicados = contador.CountConsecutiveDuplicates(list11);
+                                Console.Clear();
+                                Console.WriteLine($"Cantidad de duplicados consecutivos: {duplicados}");
+                                break;
+
+                            case "5":
+                                Console.Write("Ingrese la lista de enteros separados por coma: ");
+                                string input111 = Console.ReadLine();
+                                List<int> list111 = input111.Split(',').Select(int.Parse).ToList();
+                                var alternador = new ListsStackRecursive();
+                                var (posicionesPares, posicionesImpares) = alternador.AlternateSublists(list111);
+                                Console.Clear();
+                                Console.WriteLine($"Posiciones pares: [{string.Join(", ", posicionesPares)}]");
+                                Console.WriteLine($"Posiciones impares: [{string.Join(", ", posicionesImpares)}]");
                                 break;
 
                             default:
