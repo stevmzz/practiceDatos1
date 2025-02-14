@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
-using practice;
+using practice.conditionals;
 using practice.recursive;
 
 class Program
@@ -10,6 +10,7 @@ class Program
         Conditionals conditionals = new Conditionals();
         BasicStackRecursive recursive = new BasicStackRecursive();
         NumbersStackRecursive numbers = new NumbersStackRecursive();
+        ListsStackRecursive lists = new ListsStackRecursive();
         bool running = true;
 
         while (running)
@@ -28,7 +29,7 @@ class Program
                     break;
 
                 case "2":
-                    ManejarMenuRecursividadAux(recursive, numbers);
+                    ManejarMenuRecursividadAux(recursive, numbers, lists);
                     break;
 
                 default:
@@ -95,7 +96,8 @@ class Program
         Console.WriteLine(" 1. Ejercicios Básicos");
         Console.WriteLine(" 2. Ejercicios con Números");
         Console.WriteLine(" 3. Ejercicios con Listas");
-        Console.WriteLine(" 4. Ejercicios Avanzados");
+        Console.WriteLine(" 4. Ejercicios con Arrays");
+        Console.WriteLine(" 5. Ejercicios Avanzados");
         Console.WriteLine("───────────────────────────────────");
         Console.Write("Ingrese una opción: ");
     }
@@ -141,6 +143,21 @@ class Program
         Console.WriteLine("═══════════════════════════════════");
         Console.WriteLine("  EJERCICIOS RECURSIVOS CON LISTAS ");
         Console.WriteLine("═══════════════════════════════════");
+        Console.WriteLine(" 1. Ejercicio");
+        Console.WriteLine(" 2. Ejercicio");
+        Console.WriteLine(" 3. Ejercicio");
+        Console.WriteLine(" 4. Ejercicio");
+        Console.WriteLine(" 5. Ejercicio");
+        Console.WriteLine("───────────────────────────────────");
+        Console.Write("Ingrese una opción: ");
+    }
+
+    static void MostrarMenuRecursividadPilaArrays()
+    {
+        Console.Clear();
+        Console.WriteLine("═══════════════════════════════════");
+        Console.WriteLine("  EJERCICIOS RECURSIVOS CON ARRAYS ");
+        Console.WriteLine("═══════════════════════════════════");
         Console.WriteLine(" [Ejercicios pendientes de implementar]");
         Console.WriteLine("───────────────────────────────────");
         Console.Write("Presione cualquier tecla para volver...");
@@ -169,7 +186,7 @@ class Program
         Console.Write("Ingrese una opción: ");
     }
 
-    static void ManejarMenuRecursividadAux(BasicStackRecursive basicStackRecursive, NumbersStackRecursive numbersStackRecursive)
+    static void ManejarMenuRecursividadAux(BasicStackRecursive basicStackRecursive, NumbersStackRecursive numbersStackRecursive, ListsStackRecursive listsStackRecursive)
     {
         MostrarMenuRecursividadAux();
         string opcion = Console.ReadLine();
@@ -326,10 +343,76 @@ class Program
 
                     case "3": // Ejercicios con Listas
                         MostrarMenuRecursividadPilaListas();
+                        string opcionPilaList = Console.ReadLine();
+                        Console.Clear();
+                        switch (opcionPilaList)
+                        {
+                            case "1":
+                                Console.Write("Ingrese el umbral (0-9): ");
+                                int threshold = int.Parse(Console.ReadLine());
+                                Console.Write("Ingrese números separados por coma: ");
+                                string list = Console.ReadLine();
+                                List<int> numbers = list.Split(',').Select(int.Parse).ToList();
+                                var listSplit = new ListsStackRecursive();
+                                var (greater, less) = listSplit.SplitListByThreshold(threshold, numbers);
+                                Console.Clear();
+                                Console.WriteLine($"Resultado: ([{string.Join(", ", greater)}], [{string.Join(", ", less)}])");
+                                break;
+
+                            case "2":
+                                Console.Write("Ingrese las 10 calificaciones separadas por coma: ");
+                                string input = Console.ReadLine();
+                                List<int> scores = input.Split(',').Select(int.Parse).ToList();
+                                var calculator = new ListsStackRecursive();
+                                var result = calculator.CalculateScore(scores);
+                                Console.Clear();
+                                Console.WriteLine($"Resultado: {result}");
+                                break;
+
+                            case "3":
+                                Console.Write("Ingrese la lista de enteros separados por coma: ");
+                                string input1 = Console.ReadLine();
+                                List<int> list1 = input1.Split(',').Select(int.Parse).ToList();
+                                var separador = new ListsStackRecursive();
+                                var (pares, impares) = separador.SplitByParity(list1);
+                                Console.Clear();
+                                Console.WriteLine($"Pares: [{string.Join(", ", pares)}]");
+                                Console.WriteLine($"Impares: [{string.Join(", ", impares)}]");
+                                break;
+
+                            case "4":
+                                Console.Write("Ingrese la lista de enteros separados por coma: ");
+                                string input11 = Console.ReadLine();
+                                List<int> list11 = input11.Split(',').Select(int.Parse).ToList();
+                                var contador = new ListsStackRecursive();
+                                int duplicados = contador.CountConsecutiveDuplicates(list11);
+                                Console.Clear();
+                                Console.WriteLine($"Cantidad de duplicados consecutivos: {duplicados}");
+                                break;
+
+                            case "5":
+                                Console.Write("Ingrese la lista de enteros separados por coma: ");
+                                string input111 = Console.ReadLine();
+                                List<int> list111 = input111.Split(',').Select(int.Parse).ToList();
+                                var alternador = new ListsStackRecursive();
+                                var (posicionesPares, posicionesImpares) = alternador.AlternateSublists(list111);
+                                Console.Clear();
+                                Console.WriteLine($"Posiciones pares: [{string.Join(", ", posicionesPares)}]");
+                                Console.WriteLine($"Posiciones impares: [{string.Join(", ", posicionesImpares)}]");
+                                break;
+
+                            default:
+                                break;
+                        }
+                        break;
+
+
+                    case "4": // Ejercicios con Arrays
+                        MostrarMenuRecursividadPilaArrays();
                         Console.ReadKey();
                         break;
 
-                    case "4": // Ejercicios Avanzados
+                    case "5": // Ejercicios Avanzados
                         MostrarMenuRecursividadPilaAvanzados();
                         Console.ReadKey();
                         break;
